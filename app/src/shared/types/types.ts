@@ -44,3 +44,12 @@ export interface TodoItemProps {
   updateStatus: (id: string) => void;
   deleteTodo: (id: string) => void;
 }
+
+export interface CalendarProps {
+  id: string;
+  summary: string;
+}
+
+export interface Calendars<T> {
+  items: T[];
+}

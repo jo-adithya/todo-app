@@ -10,7 +10,7 @@ enum FilterType {
   COMPLETED,
 }
 
-export const Todo = () => {
+export const TodoManager = () => {
   const [value, setValue] = useState("");
   const [active, setActive] = useState<FilterType>(FilterType.ALL);
   const {
