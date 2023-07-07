@@ -34,7 +34,7 @@ export const makeFetch = async <T>({
   return res;
 };
 
-const createCalendar = async (token: string): Promise<string | null> => {
+export const createCalendar = async (token: string): Promise<string | null> => {
   const options = {
     method: "POST" as const,
     url: "https://www.googleapis.com/calendar/v3/calendars",
@@ -46,7 +46,7 @@ const createCalendar = async (token: string): Promise<string | null> => {
   return response.id;
 };
 
-const findCalendar = async (token: string): Promise<string | null> => {
+export const findCalendar = async (token: string): Promise<string | null> => {
   const options = {
     method: "GET" as const,
     url: "https://www.googleapis.com/calendar/v3/users/me/calendarList",

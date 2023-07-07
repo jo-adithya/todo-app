@@ -6,5 +6,5 @@ import "./index.css";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-if (process.env.REACT_APP_CLIENT_ID) root.render(<App />);
+if (import.meta.env.VITE_CLIENT_ID) root.render(<App />);
 else root.render(<App />);

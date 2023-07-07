@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState("");
 
   const { signIn } = useGoogleLogin({
-    clientId: process.env.REACT_APP_CLIENT_ID!,
+    clientId: import.meta.env.VITE_CLIENT_ID!,
     onSuccess: (response) => {
       if ("accessToken" in response) setToken(response.accessToken);
       if ("profileObj" in response) setUser(response.profileObj.name);
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   });
 
   const { signOut } = useGoogleLogout({
-    clientId: process.env.REACT_APP_CLIENT_ID!,
+    clientId: import.meta.env.VITE_CLIENT_ID!,
     onLogoutSuccess: () => {
       setToken(null);
       setUser("");
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     function start() {
       gapi.client.init({
-        clientId: process.env.REACT_APP_CLIENT_ID,
+        clientId: import.meta.env.VITE_CLIENT_ID,
         scope: "https://www.googleapis.com/auth/calendar",
         prompt: true,
       })
