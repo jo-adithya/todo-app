@@ -45,11 +45,35 @@ export interface TodoItemProps {
   deleteTodo: (id: string) => void;
 }
 
-export interface CalendarProps {
+export interface Calendar {
   id: string;
   summary: string;
 }
 
-export interface Calendars<T> {
+export type Event = {
+  id: string;
+  summary: string;
+  start: {
+    dateTime: Date;
+  }
+  end: {
+    dateTime: Date;
+  }
+}
+
+export type TaskList = {
+  id: string;
+  title: string;
+}
+
+export type Task = {
+  id: string;
+  title: string;
+  status: 'needsAction' | 'completed';
+  due?: string;
+  completed?: string;
+}
+
+export interface GoogleList<T> {
   items: T[];
 }

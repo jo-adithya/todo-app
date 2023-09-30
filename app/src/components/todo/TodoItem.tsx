@@ -1,6 +1,6 @@
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { RadioButton } from "../form/RadioButton";
-import { TodoItemProps } from "../../shared/types/types";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { RadioButton } from '../form/RadioButton';
+import { TodoItemProps } from 'types';
 
 export const TodoItem = ({
   id,
@@ -15,7 +15,7 @@ export const TodoItem = ({
       <div className={`mx-4 relative flex-auto truncate`}>
         <span
           className={`${
-            completed ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+            completed ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
           } origin-left transition duration-[.4s] ease-in-out absolute w-[calc(100%+14px)] h-[1px] bg-dark-primary top-1/2 -translate-x-[7px] -translate-y-[50%]`}
         ></span>
         {todo}

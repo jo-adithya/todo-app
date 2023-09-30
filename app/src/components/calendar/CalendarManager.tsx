@@ -3,11 +3,9 @@ import { PickersDay } from "@mui/x-date-pickers";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { Badge } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
-import { useContext } from 'react';
-import { CalendarContext } from '../../shared/context/calendar-context';
 
 export const CalendarManager = () => {
-  const { date, setDate } = useContext(CalendarContext);
+  // const { date, setDate } = useContext(CalendarContext);
   return (
     <StaticDateTimePicker
       className="!bg-bg !text-dark-primary !font-thin"
@@ -27,8 +25,8 @@ export const CalendarManager = () => {
         },
       }}
       orientation="landscape"
-      value={date}
-      onChange={(newDate) => setDate(newDate)}
+      // value={date}
+      // onChange={(newDate) => setDate(newDate)}
     />
   );
 };

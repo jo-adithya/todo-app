@@ -1,10 +1,12 @@
-import { useCallback, useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../shared/context/auth-context";
-import { LogoutButton } from "./LogoutButton";
-import { LoginButton } from "./LoginButton";
+import { useStore } from '@store';
+import { LogoutButton } from './LogoutButton';
+import { LoginButton } from './LoginButton';
 
 export const AuthButton = () => {
-  const { isAuthenticated, user } = useContext(AuthContext);
+  const { user, isAuthenticated } = useStore((state) => ({
+    user: state.user,
+    isAuthenticated: !!state.token,
+  }));
 
   if (isAuthenticated)
     return (

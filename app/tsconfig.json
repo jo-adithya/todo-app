@@ -19,7 +19,9 @@
     "jsx": "react-jsx",
     "paths": {
       "@*": ["./src/*"],
-      "types": ["./src/shared/types/types.ts"]
+      "@store": ["./src/store/globalStore.ts"],
+      "types": ["./src/shared/types/globals.ts"],
+      "types/*": ["./src/shared/types/*"]
     },
   },
   "include": ["src"]

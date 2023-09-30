@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { TodoActionKind, TodoState, TodoAction } from '../types/types';
+import { TodoActionKind, TodoState, TodoAction } from '../types/globals';
 
 const reducer = (state: TodoState, action: TodoAction): TodoState => {
   switch (action.type) {

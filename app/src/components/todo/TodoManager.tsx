@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTodo } from "../../shared/hooks/useTodo";
-import { TodoProps } from "../../shared/types/types";
+import { useTodo as useTodos } from "@shared/hooks/useTodos";
+import { TodoProps } from "../../shared/types/globals";
 
 import { TodoItem } from "./TodoItem";
 
@@ -15,17 +16,19 @@ export const TodoManager = () => {
   const [active, setActive] = useState<FilterType>(FilterType.ALL);
   const {
     todoManager,
-    addTodo,
+    // addTodo,
     updateTodo,
     updateStatus,
     deleteTodo,
     clearTodo,
   } = useTodo();
-  const [todos, setTodos] = useState<TodoProps>(todoManager.todos);
+  // const [todos, setTodos] = useState<TodoProps>(todoManager.todos);
+
+  const { data: todos, addTodo } = useTodos()
 
   const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key !== "Enter") return;
-    addTodo(value);
+    addTodo({ title: value, status: 'needsAction' });
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,34 +37,34 @@ export const TodoManager = () => {
 
   const handleAll = () => {
     setActive(FilterType.ALL);
-    setTodos(todoManager.todos);
+    // setTodos(todoManager.todos);
   };
 
   const handleCompleted = () => {
     setActive(FilterType.COMPLETED);
-    setTodos(
-      Object.fromEntries(
-        Object.entries(todoManager.todos).filter(
-          ([, { completed }]) => completed
-        )
-      )
-    );
+    // setTodos(
+    //   Object.fromEntries(
+    //     Object.entries(todoManager.todos).filter(
+    //       ([, { completed }]) => completed
+    //     )
+    //   )
+    // );
   };
 
   const handleActive = () => {
     setActive(FilterType.ACTIVE);
-    setTodos(
-      Object.fromEntries(
-        Object.entries(todoManager.todos).filter(
-          ([, { completed }]) => !completed
-        )
-      )
-    );
+    // setTodos(
+    //   Object.fromEntries(
+    //     Object.entries(todoManager.todos).filter(
+    //       ([, { completed }]) => !completed
+    //     )
+    //   )
+    // );
   };
 
-  useEffect(() => {
-    setTodos(todoManager.todos);
-  }, [todoManager.todos]);
+  // useEffect(() => {
+  //   setTodos(todoManager.todos);
+  // }, [todoManager.todos]);
 
   return (
     <div className="bg-white pb-4 min-h-[120px] w-[50vw] min-w-[430px] md:min-w-[483px] text-3xl font-light shadow-[0px_10px_20px_rgba(0,0,0,0.15)]">
@@ -74,11 +77,12 @@ export const TodoManager = () => {
       />
       <div className="bg-primary w-[104%] shadow-[0px_8px_20px_rgba(0,0,0,0.15)] -translate-x-[2%]">
         <div className="flex flex-col gap-[.5px] w-full h-full max-h-[217px] overflow-auto">
-          {Object.entries(todos).map((item) => (
+          {todos?.map((item) => (
             <TodoItem
-              id={item[0]}
-              todo={item[1].todo}
-              completed={item[1].completed}
+              key={item.id}
+              id={item.id}
+              todo={item.title}
+              completed={item.status === 'completed'}
               updateStatus={updateStatus}
               deleteTodo={deleteTodo}
             />
